@@ -13,7 +13,7 @@ Kache is a generic, thread-safe key-value cache implementation in Go with expira
 ## Installation
 
 ```bash
-go get github.com/yourusername/kache
+go get github.com/kevalsabhani/kache
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/yourusername/kache"
+    "github.com/kevalsabhani/kache"
 )
 
 func main() {
