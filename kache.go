@@ -36,13 +36,13 @@ type Kacher[K comparable, V any] interface {
 // V is the type of the value being stored.
 type item[V any] struct {
 	value  V
-	expiry time.Time
+	expiry int64
 }
 
 // isExpired checks if the item has expired by comparing its expiry time
 // with the current time. Returns true if the item has expired.
 func (i item[V]) isExpired() bool {
-	return i.expiry.After(time.Now())
+	return i.expiry > 0 && time.Now().UnixNano() > i.expiry
 }
 
 // Kache is a generic key-value cache implementation that supports basic operations
@@ -87,7 +87,7 @@ func (c *Kache[K, V]) Get(key K) (V, bool) {
 
 	if item.isExpired() {
 		delete(c.data, key)
-		return item.value, false
+		return c.data[key].value, false
 	}
 
 	return item.value, found
@@ -98,9 +98,14 @@ func (c *Kache[K, V]) Get(key K) (V, bool) {
 func (c *Kache[K, V]) Set(key K, value V, expiry time.Duration) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
+
+	var expiryTime int64
+	if expiry > 0 {
+		expiryTime = time.Now().Add(expiry).UnixNano()
+	}
 	c.data[key] = item[V]{
 		value:  value,
-		expiry: time.Now().Add(expiry),
+		expiry: expiryTime,
 	}
 }
 
@@ -124,7 +129,7 @@ func (c *Kache[K, V]) Pop(key K) (V, bool) {
 	delete(c.data, key)
 
 	if item.isExpired() {
-		return item.value, false
+		return c.data[key].value, false
 	}
 
 	return item.value, found
