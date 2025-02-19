@@ -85,11 +85,15 @@ Removes and returns a value from the cache. Returns the value and a boolean indi
 - **Thread-Safety**: All operations are protected by sync.RWMutex
 - **Zero Dependencies**: Only uses Go standard library
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
 ## License
 
 MIT License
 
-Copyright (c) 2024 [Your Name]
+Copyright (c) 2024 [Keval Sabhani]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -108,8 +112,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
