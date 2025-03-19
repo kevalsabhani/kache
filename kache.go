@@ -27,7 +27,7 @@ import (
 // like Get, Set, Delete and Pop with keys of type K and values of type V.
 type Kacher[K comparable, V any] interface {
 	Get(K) (V, bool)
-	Set(K, V)
+	Set(K, V, time.Duration)
 	Delete(K)
 	Pop(K) (V, bool)
 }
