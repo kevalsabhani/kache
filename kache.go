@@ -53,7 +53,7 @@ type Kache[K comparable, V any] struct {
 }
 
 // New creates a new Kache instance.
-func New[K comparable, V any]() *Kache[K, V] {
+func New[K comparable, V any]() Kacher[K, V] {
 	c := &Kache[K, V]{
 		data: make(map[K]item[V]),
 	}
